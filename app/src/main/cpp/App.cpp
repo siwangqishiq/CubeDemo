@@ -6,6 +6,7 @@
 #include <GLES3/gl3.h>
 #include <malloc.h>
 
+
 void App::init() {
     //init shader
     ALOGV("init");
@@ -28,7 +29,6 @@ void App::init() {
                     "out_color = vec4(f_color.xyz , 1.0f);\n"
                     "}\n";
     mProgramId = loadShaderProgram(vertexShader, fragShader);
-
 }
 
 GLuint App::loadShaderProgram(const char *vShaderSrc, const GLchar *fShaderSrc) {
@@ -110,6 +110,10 @@ void App::render() {
     glEnableVertexAttribArray(1);
 
     glDrawArrays(GL_TRIANGLES, 0, 3);
+
+
+    // render a cube
+
 }
 
 void App::free() {

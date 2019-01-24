@@ -18,7 +18,8 @@ add_library( # Sets the name of the library.
 
              # Provides a relative path to your source file(s).
              src/main/cpp/native-lib.cpp
-             src/main/cpp/App.cpp)
+             src/main/cpp/main.cpp
+             src/main/cpp/utils.hpp)
 
 set(OPENGL_LIB GLESv3)
 
