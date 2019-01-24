@@ -19,39 +19,40 @@
 #endif
 
 
-class App{
+class App {
 
 protected:
     GLuint mProgramId;
-    float mCubeVertex[8 * 3] = {
-            -1.0f, 1.0f, 1.0f,    //正面左上0
-            -1.0f, -1.0f, 1.0f,   //正面左下1
-            1.0f, -1.0f, 1.0f,    //正面右下2
-            1.0f, 1.0f, 1.0f,     //正面右上3
-            -1.0f, 1.0f, -1.0f,    //反面左上4
-            -1.0f, -1.0f, -1.0f,   //反面左下5
-            1.0f, -1.0f, -1.0f,    //反面右下6
-            1.0f, 1.0f, -1.0f,     //反面右上7
+
+    float mCubeVertex[12 * 3] = {
+            -1.0f, 1.0f, 1.0f,
+            -1.0f, -1.0f, 1.0f,
+            1.0f, -1.0f, 1.0f,
+            1.0f,  1.0f, 1.0f,
+            -1.0f, 1.0f, -1.0f,
+            -1.0f, -1.0f, -1.0f,
+            1.0f, -1.0f, -1.0f,
+            1.0f, 1.0f, -1.0f
     };
 
     unsigned short mCubeIndices[36] = {
-            0, 3, 2, 0, 2, 1,    //正面
-            0, 1, 5, 0, 5, 4,    //左面
-            0, 7, 3, 0, 4, 7,    //上面
-            6, 7, 4, 6, 4, 5,    //后面
-            6, 3, 7, 6, 2, 3,    //右面
-            6, 5, 1, 6, 1, 2     //下面
+            6,7,4,6,4,5,
+            6,3,7,6,2,3,
+            6,5,1,6,1,2,
+            0,3,2,0,2,1,
+            0,1,5,0,5,4,
+            0,7,3,0,4,7
     };
 
-    float mCubeColors [8 * 3] = {
-            0.0f,1.0f,0.0f,
-            0.0f,1.0f,0.0f,
-            0.0f,1.0f,0.0f,
-            0.0f,1.0f,0.0f,
-            1.0f,0.0f,0.0f,
-            1.0f,0.0f,0.0f,
-            1.0f,0.0f,0.0f,
-            1.0f,0.0f,0.0f,
+    float mCubeColors[12 * 3] = {
+            1.0f, 1.0f, 1.0f,
+            0.0f, 1.0f, 0.0f,
+            1.0f, 1.0f, 0.0f,
+            1.0f, 0.0f, 1.0f,
+            0.0f, 0.0f, 1.0f,
+            0.0f, 0.0f, 0.5f,
+            1.0f, 1.0f, 1.0f,
+            0.5f, 0.0f, 0.0f,
     };
 
     float mModelMatrix[4 * 4];
@@ -65,14 +66,16 @@ protected:
 
     void updateMVPMatrix();
 
-    GLuint loadShaderProgram(const GLchar *vShader ,const GLchar *fShader);
-    GLuint createShader(GLenum shaderType, const char* src);
+    GLuint loadShaderProgram(const GLchar *vShader, const GLchar *fShader);
+
+    GLuint createShader(GLenum shaderType, const char *src);
 
     void debugShowMat(float *m);
+
 public:
     void init();
 
-    void resize(int w ,int h);
+    void resize(int w, int h);
 
     void render();
 
